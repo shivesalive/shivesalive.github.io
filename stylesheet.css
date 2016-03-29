@@ -1,7 +1,9 @@
-#body{
+body{
 	background-image: url(images/portrait_of_Catherine_looking_good.jpg);
     background-size: cover;
     color: #ffffff;
+    font-family: Arial black;
+    margin: 0px;
 }
  
  #footer{
@@ -9,9 +11,23 @@
     width: 100%;
     position: fixed;
     bottom: 0;
+    background-color: black;
+    text-align: center;
 }
 
-body {
-	font-family: Garamond;
-	padding-left: 15px;
+#header {
+	background-color: black;
+	margin-top: 0px;
+    text-align: center;
 }
+
+h1 {
+	margin-top: 0px;
+    padding: 40px 0px 40px 0px;
+}
+
+#body {
+    font-size: 18px;
+    margin: 20px 0px 20px 20px;
+}
+
