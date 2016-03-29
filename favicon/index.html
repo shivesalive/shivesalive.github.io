@@ -1,0 +1,127 @@
+    {if segment_1=="test"}
+        {header2}
+    {if:else}
+        {header}
+    {/if}
+    <body id="home">
+            {embed="includes/navbar"}
+            <div id="bg">
+                <img src="{bg-img}" alt="">
+            </div>
+            <div id="homePage">
+               <div class="homeReservationWrapper">
+                   <a href="javascript:void(0)" id="homeReservation">
+                       <span class="makeRes">Make A Reservation</span> 
+                       <span class="outOfRes hide"><span class="fa fa-chevron-left"></span> Go Back</span>
+                   </a>
+               </div>
+               <div class="flip">
+                   <div class="card">
+                        <div class="home-intro-widget face front">
+                            <div class="homeSlider">
+                               {embed="includes/home_slider"}
+                            </div>
+                            <div id="bx-pager">
+                              <a data-slide-index="0" href=""><span>DINING</span><span id="progress-bar"></span></a>
+                              <a data-slide-index="1" href=""><span>EVENTS</span></a>
+                            </div>
+                        </div>
+                        <div class="home-intro-widget face back">
+                            <div class="res">
+                               <h2>Make a Reservation</h2>
+                               {reservation-form}
+                            </div>
+                            <div class="event-res">
+                                <h2>Private Event Inquiry</h2>
+                                {exp:email:contact_form user_recipients="no" return="{site_url}contact/thank-you/#{segment_1}" charset="utf-8" recipients="{em_private-events-manager}, theadkgroup@gmail.com"}
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><label for="name">Name</label></span>
+                                        <input type="text" class="form-control" placeholder="Enter Name..." id="name" name="name" required>
+                                    </div>
+                                   <!--  <input type="text" name="to" class="hidden" value="{embed:to}"/> -->
+                                     <input type="text" name="from" class="hidden" value="no-reply@landanagrill.com"/>
+                                     <input type="text" name="message[]" class="hidden" value=" "/>
+                                    <input type="hidden" class="form-control" name="subject" value="L'andana Private Event">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><label for="email">Email</label></span>
+                                        <input type="email" class="form-control" placeholder="Enter Email...." id="email" name="to" required>
+                                    </div>
+                                    <input type="text" name="message[]" class="hidden" value=" "/>
+                                    <input type="hidden" class="form-control" name="message[]" value="Phone Number:">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><label for="phone">Phone</label></span>
+                                        <input type="tel" class="form-control" placeholder="Enter Phone..." id="phone" name="message[]" required>
+                                    </div>
+                                    <input type="text" name="message[]" class="hidden" value=" "/>
+                                    <input type="hidden" class="form-control" name="message[]" value="Message:">
+                                    <div class="form-group">
+                                        <textarea type="text" class="form-control" rows="3" placeholder="Message..." name="message[]" required></textarea>
+                                    </div>
+                                    <input type="text" name="message[]" class="hidden" value=" "/>
+                                    <input type="hidden" class="form-control" name="message[]" value="Feedback & Referral:">
+                                    <div class="form-group">
+                                        <select name="message[]" class="form-control" id="referer_select">
+                                            <option value="">Where did you hear about us?</option>
+                                            <option value="Google">Google</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Opentable">Opentable</option>
+                                            <option value="Zagat">Zagat</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Trip Advisor">Trip Advisor</option>
+                                            <option value="Improper Bostonian">Improper Bostonian</option>
+                                            <option value="Boston Magazine">Boston Magazine</option>
+                                            <option value="Referring Hotel:" class="refer_me">Hotel Referral</option>
+                                            <option value="This Person Referred Me:" class="refer_me">Personal Referral</option>
+                                            <option value="Other:" class="refer_me">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- REFERRALS -->
+                                    <input type="hidden" class="form-control" name="message[]" value="" id="referral_label">
+                                    <input type="text" name="message[]" class="hidden" value=" "/>
+                                    <div class="input-group hidden" id="referer_field">
+                                        <span class="input-group-addon"><label for="referer">Referral</label></span>
+                                        <input type="text" class="form-control" placeholder="Who referred you?"  name="message[]" >
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default btn-block">Send Message</button>
+                                    </div>
+                                {/exp:email:contact_form}
+                            </div>
+                        </div>
+                   </div>
+               </div>
+            </div>
+        {footer}
+        
+        {exp:channel:entries channel="home" limit="1"}
+            {if active_pop_up =="Yes"}
+                <div class="modal fade in" id="home-popup">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">{pop_up_title}</h4>
+                            </div>
+                            <div class="modal-body">
+                                {pop_up_content}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <script>
+                    $(window).load(function() {
+                        $("#home-popup").modal("show");
+                    });
+                </script>
+            {/if}
+        {/exp:channel:entries}
+        
+    </body>
+</html>

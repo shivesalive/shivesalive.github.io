@@ -1,0 +1,30 @@
+{% for media_item in post.get_field('content_set_for_after') %}
+            		
+	{% if media_item.acf_fc_layout == 'action_link_list' %}
+	
+    	<ul class="action-list">
+			{% for item in media_item.action_link_list_set %}
+            <li><a onclick="_gaq.push( [ '_trackEvent', 'About', 'CTA', 'What We Treat' ]);" href="{{item.action}}">{{item.label}}</a></li>
+            {% endfor %}
+        </ul>
+    
+    {% elseif media_item.acf_fc_layout == 'faq' %}
+    	
+    	<dl>
+    		{% for item in media_item.q_and_a_set %}
+	    		<dt>{{item.question}}</dt>
+	    		<dd>{{item.answer}}</dd>
+			{% endfor %}
+    	</dl>
+    
+    {% elseif media_item.acf_fc_layout == 'general_content' %}
+    
+    	{{media_item.editor}}
+    
+    {% elseif media_item.acf_fc_layout == 'header' %}
+    
+    	<{{media_item.type}} id="{{media_item.id_tag}}">{{media_item.label}}</{{media_item.type}}>
+    
+    {% endif %}
+            	
+{% endfor %}
