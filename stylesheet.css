@@ -37,8 +37,3 @@ h1 {
    left: 50%;
    transform: translate(-50%, -50%);
 }
-
-#page-wrap {
-     width: 800px;
-     margin: 0 auto;
-}
